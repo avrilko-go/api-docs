@@ -34,7 +34,7 @@ class SwaggerController
 
     public function index(): PsrResponseInterface
     {
-        $filePath = BASE_PATH . '/vendor/tangwei/apidocs/src/web/index.html';
+        $filePath = BASE_PATH . '/vendor/avrilko/apidocs/src/web/index.html';
         $contents = file_get_contents($filePath);
         $contents = str_replace('{{$path}}', '.' . $this->swaggerConfig->getPrefixUrl(), $contents);
         $contents = str_replace('{{$url}}', '.' . $this->getSwaggerFileUrl(BootAppRouteListener::$httpServerName), $contents);
