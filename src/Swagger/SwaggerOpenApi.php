@@ -10,7 +10,7 @@ use Hyperf\DTO\Mapper;
 use OpenApi\Attributes as OA;
 use OpenApi\Attributes\OpenApi;
 use OpenApi\Attributes\Tag;
-use OpenApi\Generator;
+use OpenApi\Generator as OGenerator;
 use SplPriorityQueue;
 
 class SwaggerOpenApi
@@ -122,8 +122,8 @@ class SwaggerOpenApi
         foreach ($paths as $value) {
             $path = $value->path;
             if (isset($uniquePaths[$path])) {
-                $hasSetMethods = array_filter($validateMethods, fn ($method) => $uniquePaths[$path]->$method !== Generator::UNDEFINED);
-                $newMethods = array_filter($validateMethods, fn($method) => $value->$method !== Generator::UNDEFINED);
+                $hasSetMethods = array_filter($validateMethods, fn ($method) => $uniquePaths[$path]->$method !== OGenerator::UNDEFINED);
+                $newMethods = array_filter($validateMethods, fn($method) => $value->$method !== OGenerator::UNDEFINED);
                 $needAddMethods = array_diff($newMethods, $hasSetMethods);
                 if (!empty($needAddMethods)) {
                     foreach ($needAddMethods as $method) {
